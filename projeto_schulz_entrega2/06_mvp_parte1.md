@@ -77,8 +77,8 @@ classDiagram
 
     class Medicao {
         +id_medicao
-        +id_equipamento_fk
-        +id_tecnico_fk
+        +id_equipamento
+        +id_tecnico
         +numero_certificado
         +data_calibracao
         +parametro_cota
@@ -161,7 +161,16 @@ Foram criados arquivos específicos para verificar o funcionamento das classes:
 A separação dos arquivos facilita a manutenção, a organização e a realização de testes individuais durante o desenvolvimento.
 
 
-## 7. Conclusão
+## 7. Higienização da estrutura do projeto
+
+O .gitignore foi configurado para garantir a higiene e a segurança do repositório, impedindo o rastreamento desnecessário de arquivos temporários compilados pelo Python (como as pastas __pycache__ e extensões .pyc). Com a exclusão dessas pastas do controle de versão e do ambiente remoto, o repositório mantém apenas o código-fonte essencial, otimizando o tamanho do projeto e evitando conflitos em execuções locais de diferentes colaboradores.
+
+## 8. Versionamento semântico
+
+Foi implementado com o uso de Git Tags, permitindo rastrear formalmente a evolução histórica do sistema desde as etapas iniciais até a consolidação do MVP. O histórico conta com marcos de desenvolvimento (v0.1.0 a v0.3.0) registrando a criação da estrutura de arquivos, das classes de domínio e do banco SQLite, culminando na versão estável v1.0.1, que sela a entrega do MVP Parte 1 com todas as regras metrológicas e de repositório devidamente ajustadas.
+
+
+## 9. Conclusão
 
 Nesta etapa do projeto, foram desenvolvidas as classes Tecnico, Equipamento e Medicao, utilizando os conceitos de Programação Orientada a Objetos em Python.
 
