@@ -1,4 +1,3 @@
-
 class Medicao:
     def __init__(
         self,
@@ -42,7 +41,10 @@ class Medicao:
     def validar_tolerancia(self):
         erro = self.calcular_erro()
 
-        if self.tolerancia_neg <= erro <= self.tolerancia_pos:
+        tol_inferior = -abs(self.tolerancia_neg)    # função '-abs' garante que seja SEMPRE negativo
+        tol_superior = abs(self.tolerancia_pos)     # função 'abs' garante que seja SEMPRE positivo
+
+        if tol_inferior <= erro <= tol_superior:
             self.status_resultado = "APROVADO"
         else:
             self.status_resultado = "REPROVADO"
