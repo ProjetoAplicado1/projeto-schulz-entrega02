@@ -14,8 +14,8 @@ class Medicao:
         id_medicao=None
     ):
         self.id_medicao = id_medicao
-        self.id_equipamento_fk = id_equipamento_fk
-        self.id_tecnico_fk = id_tecnico_fk
+        self.id_equipamento = id_equipamento_fk
+        self.id_tecnico = id_tecnico_fk
         self.numero_certificado = numero_certificado
         self.data_calibracao = data_calibracao
         self.parametro_cota = parametro_cota
@@ -25,9 +25,9 @@ class Medicao:
         self.meas_1 = meas_1
         self.meas_2 = meas_2
 
-        self.valor_obtidomean = None
-        self.erro_calculado = None
-        self.status_resultado = None
+        self.valor_obtidomean = self.calcular_media()
+        self.erro_calculado = self.calcular_erro()
+        self.status_resultado = self.validar_tolerancia()
 
     def calcular_media(self):
         self.valor_obtidomean = (self.meas_1 + self.meas_2) / 2
@@ -50,3 +50,6 @@ class Medicao:
             self.status_resultado = "REPROVADO"
 
         return self.status_resultado
+
+    def __repr__(self):
+        return f"<Medicao {self.numero_certificado} - {self.parametro_cota}: {self.status_resultado}>"

@@ -13,8 +13,7 @@ o banco analise essa alteração automaticamente em todas as medições filhas s
 
 
 PRAGMA foreign_keys = ON;      -- Ativa o suporte e a validação estrita de Chaves Estrangeiras no SQLite
--- 1. TABELA: tecnico
--- Armazena o cadastro permanente dos metrologistas e operadores
+
 CREATE TABLE IF NOT EXISTS tecnico (
     id_tecnico INTEGER PRIMARY KEY AUTOINCREMENT,
     matricula TEXT NOT NULL UNIQUE,
@@ -22,8 +21,6 @@ CREATE TABLE IF NOT EXISTS tecnico (
     turno TEXT NOT NULL
 );
 
--- 2. TABELA: equipamento
--- Armazena o cadastro dos ativos e instrumentos submetidos à calibração
 CREATE TABLE IF NOT EXISTS equipamento (
     id_equipamento INTEGER PRIMARY KEY AUTOINCREMENT,
     tag_codigo TEXT NOT NULL UNIQUE,
@@ -31,13 +28,11 @@ CREATE TABLE IF NOT EXISTS equipamento (
     setor_cliente TEXT NOT NULL
 );
 
--- 3. TABELA: medicao
--- Tabela transacional que regista as medições da MMC Zeiss
 CREATE TABLE IF NOT EXISTS medicao (
     id_medicao INTEGER PRIMARY KEY AUTOINCREMENT,
-    id_equipamento_fk INTEGER NOT NULL,
-    id_tecnico_fk INTEGER NOT NULL,
-    numero_certificado TEXT NOT NULL UNIQUE,
+    id_equipamento INTEGER NOT NULL,
+    id_tecnico INTEGER NOT NULL,
+    numero_certificado TEXT NOT NULL,
     data_calibracao TEXT NOT NULL,
     parametro_cota TEXT NOT NULL,
     valor_nominal REAL NOT NULL,
@@ -49,7 +44,6 @@ CREATE TABLE IF NOT EXISTS medicao (
     erro_calculado REAL NOT NULL,
     status_resultado TEXT NOT NULL CHECK (status_resultado IN ('APROVADO', 'REPROVADO')),
     
-    -- Definição das Chaves Estrangeiras (Integridade Referencial)
     FOREIGN KEY (id_equipamento_fk) REFERENCES equipamento (id_equipamento) 
         ON DELETE RESTRICT ON UPDATE CASCADE,
     FOREIGN KEY (id_tecnico_fk) REFERENCES tecnico (id_tecnico) 

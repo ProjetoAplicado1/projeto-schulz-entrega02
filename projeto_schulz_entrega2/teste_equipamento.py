@@ -1,13 +1,18 @@
+from models.equipamento import Equipamento
 
-from models.equipamentos import Equipamento
+def testar_equipamento():
+    equipamento1 = Equipamento(
+        tag_codigo="CAL-001",
+        descricao="Paquimetro digital",
+        setor_cliente="Metrologia"
+    )
 
-equipamento1 = Equipamento(
-    "CAL-001",
-    "Paquimetro digital",
-    "Metrologia"
-)
+    print("=== TESTE DA CLASSE EQUIPAMENTO ===")
+    print(f"Tag: {equipamento1.tag_codigo}")
+    print(f"Descrição: {equipamento1.descricao}")
+    print(f"Setor: {equipamento1.setor_cliente}")
+    print(f"Representação do objeto: {equipamento1}")
 
-print("=== TESTE DA CLASSE EQUIPAMENTO ===")
-print(f"Tag: {equipamento1.tag_codigo}")
-print(f"Descrição: {equipamento1.descricao}")
-print(f"Setor: {equipamento1.setor_cliente}")
+if __name__ == "__main__":
+    testar_equipamento()
+    

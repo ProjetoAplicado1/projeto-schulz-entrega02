@@ -5,3 +5,6 @@ class Equipamento:
         self.tag_codigo = tag_codigo
         self.descricao = descricao
         self.setor_cliente = setor_cliente
+
+    def __repr__(self):
+        return f"<Equipamento {self.tag_codigo} - {self.descricao}>"
